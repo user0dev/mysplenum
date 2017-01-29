@@ -34,4 +34,6 @@ abstract class MySplEnum {
     }
 }
 
-//class_alias("MySplEnum", "SplEnum");
+if (!extension_loaded("SPL_Types")) {
+    class_alias("MySplEnum", "SplEnum");
+}
