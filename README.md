@@ -1,1 +1,1 @@
-"# mysplenum" 
+Emulation SplEnum without SPL_TYPES exception
