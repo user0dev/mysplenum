@@ -2,17 +2,20 @@
 
 //namespace MySplEnum;
 
-class SplEnum {
+abstract class MySplEnum {
     private $value = null;
 
     public function __construct($initial_value = null) {
         if (isset($initial_value)) {
+            if (!in_array(self::getConstList(true))) {
+                throw new UnexpectedValueException("Value not a const in enum " . get_called_class());
+            }
             $this->value = $initial_value;
         } else {
-            //$refl = new ReflectionClass(get_called_class());
+            $refl = new ReflectionClass(get_called_class());
             if ($refl->hasConstant("__default")) {
-//            if (isset($this->__default)) {
-                $this->value = $refl->getConstant("__default");
+        //    if (isset(self::__default)) {
+                $this->value = self::__default;
             } 
         }
     }
@@ -29,27 +32,4 @@ class SplEnum {
     }
 }
 
-
-
-
-class Mounth extends SplEnum {
-    const __default = Mounth::January;
-    const January = "0";
-    const February = "1";
-    const Match = "2";
-}
-
-$test = new Mounth();//Mounth::February);
-
-
-var_dump($test == Mounth::January);
-var_dump($test == Mounth::February);
-
-switch ($test) {
-case Mounth::January:
-    var_dump("January");
-    break;
-case Mounth::February:
-    var_dump("February");
-    break;
-}
+//class_alias("MySplEnum", "SplEnum");
