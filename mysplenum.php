@@ -2,9 +2,9 @@
 
 //namespace MySplEnum;
 
-if (!extension_loaded("SPL_Types")) {
+// if (!extension_loaded("SPL_Types")) {
 
-    abstract class SplEnum {
+    abstract class MySplEnum {
         private $value = null;
 
         public function __construct($initial_value = null) {
@@ -36,7 +36,8 @@ if (!extension_loaded("SPL_Types")) {
         }
     }
 
-}
-// if (!extension_loaded("SPL_Types")) {
-//     class_alias("MySplEnum", "SplEnum");
 // }
+
+if (!extension_loaded("SPL_Types")) {
+    class_alias("MySplEnum", "SplEnum");
+}
