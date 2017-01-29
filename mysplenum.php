@@ -7,7 +7,8 @@ abstract class MySplEnum {
 
     public function __construct($initial_value = null) {
         if (isset($initial_value)) {
-            if (!in_array(self::getConstList(true))) {
+            //var_dump($initial_value,self::getConstList(true));
+            if (!in_array($initial_value, self::getConstList(true))) {
                 throw new UnexpectedValueException("Value not a const in enum " . get_called_class());
             }
             $this->value = $initial_value;
@@ -15,7 +16,8 @@ abstract class MySplEnum {
             $refl = new ReflectionClass(get_called_class());
             if ($refl->hasConstant("__default")) {
         //    if (isset(self::__default)) {
-                $this->value = self::__default;
+                // $this->value = self::__default;
+                $this->value = $refl->getConstant("__default");
             } 
         }
     }
